@@ -39,8 +39,10 @@
       (set-keyboard-coding-system 'utf-8)))
 
 
-
-(load-library (concat (getenv "HOME") "/Utveckling/lyskom-elisp-client/lyskom-elisp-client/src/lyskom.elc"))
+(condition-case foo
+    (load-library (concat (getenv "HOME") 
+			  "/Utveckling/lyskom-elisp-client/lyskom-elisp-client/src/lyskom.elc")) 
+  (file-error (message "Not loading local lyskom.elc - not found")))
 
 (require 'calendar)
 ;(load-library "/home/pont/progs/emacs/sv-kalender.el")
