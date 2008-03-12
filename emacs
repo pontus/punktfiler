@@ -267,6 +267,7 @@ mode exists."
   (activate-input-method default-input-method)) 
 
 (add-hook 'lyskom-edit-mode-hook 'use-input-method)
+(add-hook 'lyskom-edit-mode-hook 'flyspell-mode)
 (add-hook 'message-mode-hook 'use-input-method)
 (add-hook 'zenirc-mode-hook 'use-input-method)
 
