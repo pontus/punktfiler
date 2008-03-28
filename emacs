@@ -3,6 +3,8 @@
 ;; Fix up for bbdb
 
 
+(if (fboundp 'server-start)
+    (server-start))
 
 (setq load-path 
       (append load-path (concat (getenv "HOME")
