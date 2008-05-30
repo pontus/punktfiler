@@ -24,12 +24,3 @@ except e:
 
 del os, histfile
 
-import sys
-
-
-def unimport(p):
-    try:
-        del(sys.modules[p])
-        del(globals()[p])
-    except:
-        pass
