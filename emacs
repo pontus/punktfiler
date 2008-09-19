@@ -8,7 +8,7 @@
 
 (setq load-path 
       (append load-path (concat (getenv "HOME")
-				"/Users/pontus/Utveckling/emacs")))
+				"/Utveckling/emacs")))
 
 ;; (require 'bbdb-autoloads)
 
