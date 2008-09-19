@@ -6,9 +6,10 @@
 (if (fboundp 'server-start)
     (server-start))
 
-(setq load-path 
-      (append load-path (concat (getenv "HOME")
-				"/Utveckling/emacs")))
+(setq load-path
+      (cons (concat (getenv "HOME")
+		    "/Utveckling/emacs")
+	    load-path))
 
 ;; (require 'bbdb-autoloads)
 
@@ -43,7 +44,7 @@
 
 (condition-case foo
     (load-library (concat (getenv "HOME") 
-			  "/Utveckling/lyskom-elisp-client/lyskom-elisp-client/src/lyskom.elc")) 
+			  "/Utveckling/lyskom-elisp-client/src/lyskom.elc")) 
   (file-error (message "Not loading local lyskom.elc - not found")))
 
 (require 'calendar)
