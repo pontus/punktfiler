@@ -27,12 +27,6 @@
 (if (fboundp 'set-coding-category-system)
     (set-coding-category-system 'utf-8 'utf-8))
 
-(if (fboundp 'set-coding-category-system)
-    (set-coding-category-system 'iso-8-1 'iso-8859-1))
-
-;(setq default-file-name-coding-system 'iso-8859-1)
-;(setq file-name-coding-system 'iso-8859-1)
-
 (setq default-file-name-coding-system 'utf-8)
 (setq file-name-coding-system 'utf-8)
 
@@ -424,21 +418,10 @@ mode exists."
   ()
   (interactive)
   
-  (cond (
-	  (and (functionp 'gnus-topic-unread)
-	       (not (zerop (gnus-topic-unread "Osorterad e-post"))))
-	  (switch-to-buffer "*Group*")
-	  (gnus-group-jump-to-group "nnimap+imap.uu.se:INBOX")
-	  ( gnus-group-next-unread-group 1))
-	 ((let (zenirc-selected (thisbuf (current-buffer))) 
-	    (dolist (curbuf (buffer-list) zenirc-selected) 
-	      (or zenirc-selected
-		  (and (not (eq curbuf thisbuf))
-		       (string-match ".*zenirc.*" (buffer-name curbuf))
-		       (buffer-modified-p curbuf)
-		       (switch-to-buffer curbuf)
-		       (setq zenirc-selected t)
-		       (set-buffer-modified-p nil))))))
+  (cond ((and 
+	  (functionp 'erc-track-switch-buffer)
+	  erc-modified-channels-alist)
+	 (erc-track-switch-buffer t))
 	 ((functionp 'kom-next-unread-kom)
 	  (kom-next-unread-kom))))
 
@@ -613,8 +596,6 @@ not readable."
     (type-break-mode))
 
 (defun start-koms () (interactive)
-;  (zenirc)
-;  (set-process-coding-system (get-process "zenirc:*zenirc*") 'iso-8859-1 'iso-8859-1)
   (let ((mypass (read-string "Lösen: ")))
 
     (lyskom "kom.lysator.liu.se" "Pontus Freyhult" mypass)
@@ -712,10 +693,6 @@ not readable."
 
 (defun lyskom-mime-string-charset (data) 'utf-8) 
 
-(setq blogger-url "http://blog.soua.net/blogger")
-(setq blogger-username "Pontus")
-(setq blogger-password "vittoro")
-
 (require 'tramp)
 
 (setq tramp-methods
@@ -730,13 +707,12 @@ not readable."
 		      (tramp-copy-keep-date-arg nil)
 		      (tramp-password-end-of-line nil)))))
 
-(setq tramp-default-method "lshg")
+; (setq tramp-default-method "lshg")
 
-(setq locale-coding-system 'iso-8859-1)
 
 
 ; För att inte få Emacs smiley-region från smiley-emc
-;(load-library "smiley.elc")
+(load-library "smiley.elc")
 
 
 ;; (setq w3m-coding-system 'utf-8)
