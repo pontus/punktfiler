@@ -421,7 +421,7 @@ mode exists."
   (cond ((and 
 	  (functionp 'erc-track-switch-buffer)
 	  erc-modified-channels-alist)
-	 (erc-track-switch-buffer t))
+	 (erc-track-switch-buffer 1))
 	 ((functionp 'kom-next-unread-kom)
 	  (kom-next-unread-kom))))
 
