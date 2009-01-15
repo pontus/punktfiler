@@ -106,6 +106,7 @@
 (setq kom-unread-mode-line-type t)
 (setq lyskom-language 'sv)
 (setq kom-default-language 'sv)
+(setq kom-preferred-charsets '(utf-8))
 
 ;(add-hook 'diary-hook 'appt-make-list)
 ;(diary 1)
@@ -617,14 +618,15 @@ not readable."
 ;		    (coding-system-flags 'utf-8))
 
 
-(let* ((svenska (assoc "svenska" ispell-dictionary-alist)) 
-       (casechars (cadr svenska)) 
-       (not-casechars (cadr (cdr svenska))))
-  (setq ispell-dictionary-alist 
-	(mapcar 
-         (lambda (lang) 
-	   (append (list (car lang) casechars not-casechars) (cdr (cdr (cdr lang)))))
-         ispell-dictionary-alist)))
+(if (boundp 'ispell-dictionary-alist)
+    (let* ((svenska (assoc "svenska" ispell-dictionary-alist)) 
+	   (casechars (cadr svenska)) 
+	   (not-casechars (cadr (cdr svenska))))
+      (setq ispell-dictionary-alist 
+	    (mapcar 
+	     (lambda (lang) 
+	       (append (list (car lang) casechars not-casechars) (cdr (cdr (cdr lang)))))
+	     ispell-dictionary-alist))))
 
 
 
