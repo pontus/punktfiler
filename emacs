@@ -745,5 +745,6 @@ not readable."
 ; (if (fboundp 'clipboard-kill-region) 
 ;    (defalias 'kill-region 'clipboard-kill-region))
 
-
-
+(if (and window-system
+	 (= emacs-major-version 23))
+    (set-frame-font "Monospace-6"))
