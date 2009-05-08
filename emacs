@@ -1,7 +1,13 @@
 ;  -*- mode: LISP; coding: utf-8; -*-
 
-;; Fix up for bbdb
 
+
+(if (and (boundp 'running-xemacs)
+	 running-xemacs)
+    (progn
+      (setq load-home-init-file t)
+      (require 'un-define)
+  ))
 
 (if (fboundp 'server-start)
     (server-start))
@@ -11,10 +17,7 @@
 		    "/Utveckling/emacs")
 	    load-path))
 
-;; (require 'bbdb-autoloads)
 
-
-; (defun aquamacs-ask-to-save-options () t)
 
 (setq mm-universal-file-coding-system 'utf-8)
 
@@ -155,77 +158,8 @@
 (setq w3m-home-page "http://www.google.com")
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(browse-url-browser-display nil)
- '(browse-url-browser-function (quote browse-url-firefox))
- '(browse-url-mozilla-program "mozilla")
- '(browse-url-new-window-flag t)
- '(case-fold-search t)
- '(eudc-server "ldap.uu.se")
- '(gnuserv-program (concat exec-directory "/gnuserv") t)
- '(isearch-case-fold-search t t)
- '(ldap-host-parameters-alist (quote (("ldap.uu.se" base "o=Uppsala universitet,c=se" scope subtree deref nil))))
- '(load-home-init-file t t)
- '(message-completion-alist (quote (("^\\(Newsgroups\\|Followup-To\\|Posted-To\\|Gcc\\):" . message-expand-group) ("^\\(Resent-\\)?\\(To\\|B?Cc\\):" . my-message-expand-name) ("^\\(Reply-To\\|From\\|Mail-Followup-To\\|Mail-Copies-To\\):" . message-expand-name) ("^\\(Disposition-Notification-To\\|Return-Receipt-To\\):" . message-expand-name))))
- '(ph-server "ph.uu.se"))
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(default ((t (:stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal :family "default"))))
- '(comint-highlight-prompt ((((background dark)) (:foreground "blue"))))
- '(custom-group-tag-face ((t (:weight bold :bold t))) t)
- '(custom-variable-tag-face ((t (:inherit variable-pitch :weight bold :bold t))) t)
- '(gnus-cite-face-1 ((((class color) (background dark)) nil)))
- '(gnus-cite-face-2 ((((class color) (background dark)) (:underline unspecified))))
- '(gnus-cite-face-3 ((((class color) (background dark)) (:overline unspecified))))
- '(gnus-group-mail-1-empty-face ((((class color) (background dark)) nil)) t)
- '(gnus-group-mail-1-face ((t (:weight bold :bold t))) t)
- '(gnus-group-mail-2-empty-face ((((class color) (background dark)) nil)) t)
- '(gnus-group-mail-2-face ((t (:weight bold :bold t))) t)
- '(gnus-group-mail-3-empty-face ((((class color) (background dark)) nil)) t)
- '(gnus-group-mail-3-face ((t (:weight bold :bold t))) t)
- '(gnus-group-news-1-empty-face ((((class color) (background dark)) nil)) t)
- '(gnus-group-news-1-face ((t (:weight bold :bold t))) t)
- '(gnus-group-news-2-empty-face ((((class color) (background dark)) nil)) t)
- '(gnus-group-news-2-face ((t (:weight bold :bold t))) t)
- '(gnus-group-news-low-empty-face ((((class color) (background dark)) nil)) t)
- '(gnus-group-news-low-face ((t (:weight bold :bold t))) t)
- '(gnus-header-content-face ((t (:slant italic))) t)
- '(gnus-header-from-face ((((class color) (background dark)) (:weight bold :bold t))) t)
- '(gnus-header-name-face ((((class color) (background dark)) nil)) t)
- '(gnus-header-newsgroups-face ((t (:slant italic))) t)
- '(gnus-header-subject-face ((((class color) (background dark)) nil)) t)
- '(gnus-summary-high-ancient-face ((t (:weight bold :bold t))) t)
- '(gnus-summary-high-read-face ((t (:weight bold :bold t))) t)
- '(gnus-summary-low-ancient-face ((t (:slant italic))) t)
- '(gnus-summary-low-read-face ((t (:slant italic))) t)
- '(gnus-summary-low-ticked-face ((t (:slant italic))) t)
- '(gnus-summary-normal-ancient-face ((((class color) (background dark)) (:strike-through "black"))) t)
- '(gnus-summary-normal-read-face ((((class color) (background dark)) (:slant italic))) t)
- '(kom-active-face ((t (:stipple nil :foreground "blue" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal :family "default"))))
- '(kom-face--default--active-face ((t (:stipple nil :foreground "blue" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal :family "default"))))
- '(kom-face--default--me-face ((t (:foreground "yellow" :background "black"))))
- '(kom-face--default--morons-face ((t (:stipple nil :background "white" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal :family "default"))))
- '(kom-face--default--presence-face ((t (:background "black" :foreground "grey" :slant italic))))
- '(kom-face--default--subject-face ((t (:stipple nil :foreground "blue" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal :family "default"))))
- '(kom-face--default--text-no-face ((t (:stipple nil :foreground "red" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal :family "default"))))
- '(kom-face--default--url-face ((t (:stipple nil :inverse-video nil :box nil :strike-through nil :underline nil :slant normal :weight normal :width normal :family "default"))))
- '(kom-me-face ((t (:foreground "yellow" :background "black"))))
- '(kom-morons-face ((t (:stipple nil :background "white" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal :family "default"))))
- '(kom-presence-face ((t (:background "black" :foreground "grey" :slant italic))))
- '(kom-subject-face ((t (:stipple nil :foreground "blue" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal :family "default"))))
- '(kom-text-no-face ((t (:stipple nil :foreground "red" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :width normal :family "default"))))
- '(kom-url-face ((t (:stipple nil :inverse-video nil :box nil :strike-through nil :underline nil :slant normal :weight normal :width normal :family "default"))))
- '(message-header-cc-face ((t (:weight bold :bold t))) t)
- '(message-header-newsgroups-face ((t (:slant italic :weight bold :bold t))) t)
- '(speedbar-directory-face ((((class color) (background dark)) nil)))
- '(speedbar-file-face ((((class color) (background dark)) nil)))
- '(widget-inactive-face ((((class grayscale color) (background dark)) (:foreground "blue"))) t))
+ '(load-home-init-file t t))
+(custom-set-faces)
 
 (setq ph-strict-return-matches nil)
 
@@ -737,7 +671,8 @@ not readable."
 
 
 
-(tool-bar-mode nil)
+(if (boundp 'tool-bar-mode)
+    (tool-bar-mode nil))
 
 
 ; (if (fboundp 'clipboard-kill-ring-save) 
