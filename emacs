@@ -103,6 +103,7 @@
 
 
 
+(add-hook 'kom-login-hook 'kom-keep-alive)
 (setq kom-unread-mode-line-type t)
 (setq lyskom-language 'sv)
 (setq kom-default-language 'sv)
