@@ -484,7 +484,7 @@ Jag vet inte vilket mötesnummer TV++ har i detta kom.
 
 
 (setq type-break-interval 2700)
-
+(setq type-break-file-name nil)
 
 
 (defvar open-all-ignore-res 
@@ -681,6 +681,3 @@ not readable."
 ; (if (fboundp 'clipboard-kill-region) 
 ;    (defalias 'kill-region 'clipboard-kill-region))
 
-(if (and window-system
-	 (= emacs-major-version 23))
-    (set-frame-font "Monospace-6"))
