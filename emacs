@@ -626,7 +626,7 @@ not readable."
 ;    (server-start))
 
 (if (fboundp 'auto-compression-mode)
-    (auto-compression-mode))
+    (auto-compression-mode 1))
 
 (defun lyskom-mime-string-charset (data) 'utf-8) 
 
