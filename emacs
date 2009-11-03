@@ -536,7 +536,7 @@ not readable."
 
     (lyskom "kom.lysator.liu.se" "Pontus Freyhult" mypass)
     (lyskom "kom.stacken.kth.se" "Pontus Freyhult" mypass)
-   ; (lyskom "kom.sno.pp.se" "Pontus Freyhult" mypass )
+    (lyskom "myskom.kfib.org" "Pontus Freyhult" mypass)
     (lyskom "kom.ludd.luth.se" "Pontus Freyhult" mypass)
     (lyskom "kom.update.uu.se" "Pontus Freyhult" mypass)
     (lyskom "kom.update.uu.se" "Pont IÅM" mypass)))
