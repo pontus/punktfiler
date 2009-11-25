@@ -70,12 +70,9 @@
 
 (setq display-time-show-icons-maybe nil)
 
-;(autoload 'lyskom "lyskom" "lyskom" t)
 (autoload 'flyspell-mode-on "flyspell" "Temporary docstring" t)
 (autoload 'wwtime "wwtime" "Docstring not available until loaded" t)
 
-;(setq ispell-program-name "/sw/bin/ispell")
-;(load-library "/home/pont/progs/emacs/ispell")
 
 
 ;(require 'mailcrypt) ; Just a bunch of autoloads anyway
@@ -83,25 +80,14 @@
 ; Fix diary/calendar
 
 (setq european-calendar-style t)
-(setq calendar-latitude [59 51 north])
-(setq calendar-longitude [17 37 east])
+(setq calendar-latitude [63 49 north])
+(setq calendar-longitude [20 19 east])
 (setq calendar-week-start-day 1)
-(setq calendar-location-name "Uppsala")
+(setq calendar-location-name "Umeå")
 
 (setq message-log-max 8192)
 
-(setq printer-name "pr3018")
-(setq ps-printer-name "pr3018")
-(setq ps-print-color-p nil)
 
-(setq ps-printer-name-option "-d")
-(setq ps-lpr-command "lp")
-(setq ps-lpr-switches '())
-
-(setq lpr-printer-switch "-d")
-(setq lpr-command "lp")
-(setq lpr-switches '())
-(setq lpr-add-switches nil)
 
 
 
@@ -112,8 +98,6 @@
 (setq kom-default-language 'sv)
 (setq kom-preferred-charsets '(utf-8))
 
-;(add-hook 'diary-hook 'appt-make-list)
-;(diary 1)
 
 ; Fix up python
 
@@ -483,6 +467,7 @@ Jag vet inte vilket mötesnummer TV++ har i detta kom.
 		   (define-key lyskom-sv-mode-map 'ä 'lyskom-sv-change-prefix))))))
 
 
+(setq type-break-good-rest-interval 180)
 (setq type-break-interval 2700)
 (setq type-break-file-name nil)
 
