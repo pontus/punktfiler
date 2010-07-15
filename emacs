@@ -141,9 +141,31 @@
 (autoload 'w3m "w3m" "Load and start w3m" t)
 (setq w3m-home-page "http://www.google.com")
 
-(custom-set-variables
- '(load-home-init-file t t))
-(custom-set-faces)
+
+(setq ldap-host-parameters-alist '(("ldap.user.uu.se" 
+				    base "cn=People,dc=uu,dc=se"
+				    auth simple)))
+
+(setq ldap-default-host "ldap.user.uu.se")
+(setq ldap-default-base "cn=People,dc=uu,dc=se")
+
+
+(eudc-set-server "ldap.user.uu.se" 'ldap t)
+(setq eudc-server-hotlist '(("ldap.user.uu.se" . ldap)))
+(setq eudc-inline-expansion-servers 'hotlist)
+
+
+(setq eudc-default-return-attributes nil
+      eudc-strict-return-matches nil)
+
+(setq ldap-ldapsearch-args (quote ("-tt" "-LLL" "-x")))
+(setq eudc-inline-query-format '(
+				 (firstname)
+				 (firstname name)
+				 (name)
+                                 (email)
+                                 ))
+
 
 (setq ph-strict-return-matches nil)
 
@@ -286,7 +308,7 @@ mode exists."
 ;(load-library "xml-rpc")
 
 (setq user-full-name "Pontus Freyhult")
-(setq user-mail-address "pont@soua.net")
+(setq user-mail-address "pontus@soua.net")
 
 
 (load-library "uniquify")
@@ -665,4 +687,7 @@ not readable."
 
 ; (if (fboundp 'clipboard-kill-region) 
 ;    (defalias 'kill-region 'clipboard-kill-region))
+
+
+
 
