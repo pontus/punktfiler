@@ -46,3 +46,31 @@ PATH=$PATH:/usr/sbin:/sbin
 if [ -r "$HOME/.bashrc.local" ]; then
   . "$HOME/.bashrc.local"
 fi
+
+
+# SSH-agent fix. Note possible security issues
+MYSOCKPATH="/tmp/.agent.$USER.$UID"
+
+if [ -z "$SSH_AUTH_SOCK" ]; then
+  if [ ! -S "$(readlink -f "$MYSOCKPATH")" ]; then
+   AGPATH="/tmp/.ssh_agent.$$.$UID"
+   rm -f "$AGPATH" 
+   ssh-agent -a "$AGPATH"
+   SSH_AUTH_SOCK="$AGPATH"
+  else
+   SSH_AUTH_SOCK="$(readlink -f "$MYSOCKPATH")" 
+  fi
+fi
+
+if [ "$SSH_AUTH_SOCK" != "$(readlink -f "$MYSOCKPATH")" ]; then
+  rm -f "$MYSOCKPATH"
+  ln -s "$SSH_AUTH_SOCK" "$MYSOCKPATH"
+fi
+
+SSH_AUTH_SOCK="$MYSOCKPATH"
+export SSH_AUTH_SOCK
+
+
+
+
+
