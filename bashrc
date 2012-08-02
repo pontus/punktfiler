@@ -62,10 +62,12 @@ if [ -z "$SSH_AUTH_SOCK" ]; then
   fi
 fi
 
-if [ "$SSH_AUTH_SOCK" != "$(readlink -f "$MYSOCKPATH")" ]; then
+
+if [ "$SSH_AUTH_SOCK" != "$MYSOCKPATH" -a  "$SSH_AUTH_SOCK" != "$(readlink -f "$MYSOCKPATH")" ]; then
   rm -f "$MYSOCKPATH"
   ln -s "$SSH_AUTH_SOCK" "$MYSOCKPATH"
 fi
+
 
 SSH_AUTH_SOCK="$MYSOCKPATH"
 export SSH_AUTH_SOCK
