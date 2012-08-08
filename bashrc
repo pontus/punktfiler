@@ -48,26 +48,34 @@ if [ -r "$HOME/.bashrc.local" ]; then
 fi
 
 
+
+
 # SSH-agent fix. Note possible security issues
 MYSOCKPATH="/tmp/.agent.$USER.$UID"
 
-if [ -z "$SSH_AUTH_SOCK" ]; then
-  if [ ! -S "$(readlink -f "$MYSOCKPATH")" ]; then
-   AGPATH="/tmp/.ssh_agent.$$.$UID"
-   rm -f "$AGPATH" 
-   ssh-agent -a "$AGPATH"
-   SSH_AUTH_SOCK="$AGPATH"
-  else
-   SSH_AUTH_SOCK="$(readlink -f "$MYSOCKPATH")" 
+
+SSH_AUTH_SOCK="$MYSOCKPATH" ssh-add -L 2>/dev/null >/dev/null
+ranfine=$?
+
+if [ "$ranfine" -eq 0 ]; then
+  # Our link works fine
+  :
+else
+  # Link doesn't work, check if we've got an agent (SSH_AUTH_SOCK).
+
+  if ssh-add -L 2>/dev/null >/dev/null; then
+    # We've got a working agent.
+      rm -f "$MYSOCKPATH"
+      ln -s "$SSH_AUTH_SOCK" "$MYSOCKPATH"
+  else  
+      AGPATH="/tmp/.ssh_agent.$$.$UID"
+      rm -f "$AGPATH" 
+      ssh-agent -a "$AGPATH"
+      rm -f "$MYSOCKPATH"
+      ln -s "$AGPATH" "$MYSOCKPATH"
+      
   fi
 fi
-
-
-if [ "$SSH_AUTH_SOCK" != "$MYSOCKPATH" -a  "$SSH_AUTH_SOCK" != "$(readlink -f "$MYSOCKPATH")" ]; then
-  rm -f "$MYSOCKPATH"
-  ln -s "$SSH_AUTH_SOCK" "$MYSOCKPATH"
-fi
-
 
 SSH_AUTH_SOCK="$MYSOCKPATH"
 export SSH_AUTH_SOCK
