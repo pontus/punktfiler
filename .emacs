@@ -1,1 +1,0 @@
-/media/Macintosh HD/Users/pontus/.emacs
