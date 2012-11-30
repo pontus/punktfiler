@@ -48,7 +48,9 @@ if [ -r "$HOME/.bashrc.local" ]; then
 fi
 
 
-
+if [ "x$USER" = "" ]; then
+  USER=`whoami`
+fi
 
 # SSH-agent fix. Note possible security issues
 MYSOCKPATH="/tmp/.agent.$USER.$UID"
