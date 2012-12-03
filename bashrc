@@ -47,9 +47,8 @@ if [ -r "$HOME/.bashrc.local" ]; then
   . "$HOME/.bashrc.local"
 fi
 
-
-if [ "x$USER" = "" ]; then
-  USER=`whoami`
+if [ "x$USER" = "x" ]; then
+  USER=`id -nu`
 fi
 
 # SSH-agent fix. Note possible security issues
