@@ -68,13 +68,16 @@ else
     # We've got a working agent.
       rm -f "$MYSOCKPATH"
       ln -s "$SSH_AUTH_SOCK" "$MYSOCKPATH"
-  else  
-      AGPATH="/tmp/.ssh_agent.$$.$UID"
-      rm -f "$AGPATH" 
-      ssh-agent -a "$AGPATH"
-      rm -f "$MYSOCKPATH"
-      ln -s "$AGPATH" "$MYSOCKPATH"
-      
+  else 
+     # Agent broken? 
+     if ssh-add -L 2>/dev/null | fgrep -q -v 'agent has no identities'; then 
+
+       AGPATH="/tmp/.ssh_agent.$$.$UID"
+       rm -f "$AGPATH" 
+       ssh-agent -a "$AGPATH"
+       rm -f "$MYSOCKPATH"
+       ln -s "$AGPATH" "$MYSOCKPATH"
+     fi 
   fi
 fi
 
