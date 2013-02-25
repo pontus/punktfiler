@@ -70,8 +70,9 @@ else
       ln -s "$SSH_AUTH_SOCK" "$MYSOCKPATH"
   else 
      # Agent broken? 
-     if ssh-add -L 2>/dev/null | fgrep -q -v 'agent has no identities'; then 
-
+     if ssh-add -L 2>/dev/null | fgrep -q 'agent has no identities'; then 
+       : # All is well
+     else
        AGPATH="/tmp/.ssh_agent.$$.$UID"
        rm -f "$AGPATH" 
        ssh-agent -a "$AGPATH"
