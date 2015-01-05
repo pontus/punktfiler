@@ -694,3 +694,11 @@ not readable."
 
 
 
+
+
+
+(setq gnus-use-cache t)
+(setq gnus-cache-directory "~/.cache/Mail")
+(setq gnus-cache-enter-articles '(ticked dormant read unread))
+(setq gnus-cache-remove-articles nil)
+(setq gnus-cacheable-groups "^nnimap")
