@@ -642,18 +642,6 @@ not readable."
 
 (require 'tramp)
 
-(setq tramp-methods
-      (append tramp-methods 
-	      (list '("lshg" 
-		      (tramp-connection-function tramp-open-connection-rsh) 
-		      (tramp-login-program "lshg") 
-		      (tramp-copy-program nil) 
-		      (tramp-remote-sh "/bin/sh") 
-		      (tramp-login-args ()) 
-		      (tramp-copy-args nil) 
-		      (tramp-copy-keep-date-arg nil)
-		      (tramp-password-end-of-line nil)))))
-
 ; (setq tramp-default-method "lshg")
 
 
@@ -692,5 +680,4 @@ not readable."
 ;    (defalias 'kill-region 'clipboard-kill-region))
 
 
-
-
+(setq tramp-remote-process-environment '("LC_ALL=C" "TERM=dumb" "EMACS=t" "INSIDE_EMACS='24.3.1,tramp:2.2.6-24.3'" "MAIL=" "MAILCHECK=" "MAILPATH=" "PAGER=\"\"" "autocorrect=" "correct="))
