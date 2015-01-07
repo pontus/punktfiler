@@ -679,5 +679,10 @@ not readable."
 ; (if (fboundp 'clipboard-kill-region) 
 ;    (defalias 'kill-region 'clipboard-kill-region))
 
-
 (setq tramp-remote-process-environment '("LC_ALL=C" "TERM=dumb" "EMACS=t" "INSIDE_EMACS='24.3.1,tramp:2.2.6-24.3'" "MAIL=" "MAILCHECK=" "MAILPATH=" "PAGER=\"\"" "autocorrect=" "correct="))
+
+(setq gnus-use-cache t)
+(setq gnus-cache-directory "~/.cache/Mail")
+(setq gnus-cache-enter-articles '(ticked dormant read unread))
+(setq gnus-cache-remove-articles nil)
+(setq gnus-cacheable-groups "^nnimap")
