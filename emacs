@@ -686,3 +686,7 @@ not readable."
 (setq gnus-cache-enter-articles '(ticked dormant read unread))
 (setq gnus-cache-remove-articles nil)
 (setq gnus-cacheable-groups "^nnimap")
+
+
+(setq gnus-posting-styles '((".*mail.uu.se.*" (address "Pontus.Freyhult@it.uu.se"))
+			    (".*Privat.*" (address "pontus@freyhult.net"))))
