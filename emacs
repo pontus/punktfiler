@@ -690,3 +690,10 @@ not readable."
 
 (setq gnus-posting-styles '((".*mail.uu.se.*" (address "Pontus.Freyhult@it.uu.se"))
 			    (".*Privat.*" (address "pontus@freyhult.net"))))
+
+(setq gnus-summary-line-format "%U%R%z%I%(%[%d: %4L: %-23,23f%]%) %s
+")
+
+(setq gnus-agent nil)
+
+(setq gnus-nov-is-evil t)
