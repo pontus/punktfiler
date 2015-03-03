@@ -34,7 +34,15 @@
 
 (setq message-from-style 'angles)
 
+(bbdb-initialize 'gnus 'message)
+(bbdb-insinuate-message)
+(add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
 
+(setq bbdb-complete-name-full-completion t)
+(setq bbdb-completion-type 'primary-or-name)
+(setq bbdb-complete-name-allow-cycling t)
+
+;(add-hook 'message-setup-hook 'nil)
 
 (defun enz-eudc-expand-inline()
   (interactive)
