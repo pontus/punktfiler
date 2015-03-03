@@ -687,6 +687,10 @@ not readable."
 (setq gnus-cache-remove-articles nil)
 (setq gnus-cacheable-groups "^nnimap")
 
+(setq send-mail-function smtpmail-send-it)
+(setq smtpmail-smtp-server "smtp.uu.se")
+(setq smtpmail-smtp-service 587)
+
 
 (setq gnus-posting-styles '((".*mail.uu.se.*" (address "Pontus.Freyhult@it.uu.se"))
 			    (".*Privat.*" (address "pontus@freyhult.net"))))
