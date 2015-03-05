@@ -14,7 +14,7 @@
 
 
 (add-to-list 'gnus-secondary-select-methods '(nnmaildir "Jobb"
-                                  (directory "/home/pontusf/.minjobb")
+                                  (directory "~/.minjobb")
 				  (archivefolder
 				   (concat "nnimap+Jobb:INBOX.Archives."
 					   (format-time-string "%Y.%Y-%m" date)))))
