@@ -13,10 +13,8 @@
 							 (format-time-string "%Y/%Y-%m" date)))))
 
 
-(add-to-list 'gnus-secondary-select-methods '(nnimap "Jobb"
-                                  (nnimap-address "imap.uu.se")
-                                  (nnimap-server-port 143)
-                                  (nnimap-stream starttls)
+(add-to-list 'gnus-secondary-select-methods '(nnmaildir "Jobb"
+                                  (directory "/home/pontusf/.minjobb")
 				  (archivefolder
 				   (concat "nnimap+Jobb:INBOX.Archives."
 					   (format-time-string "%Y.%Y-%m" date)))))
