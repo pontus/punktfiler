@@ -3,21 +3,19 @@
 
 
 
-(setq gnus-nntp-server "news.gmane.org")
+(setq gnus-nttp-server nil)
 
-(add-to-list 'gnus-secondary-select-methods '(nnimap "Privat"
-                                  (nnimap-address "imap.gmail.com")
-                                  (nnimap-server-port 993)
-                                  (nnimap-stream ssl)
-				  (archivefolder (concat "nnimap+Privat:[Gmail]/Alla mail/"
-							 (format-time-string "%Y/%Y-%m" date)))))
+(add-to-list 'gnus-secondary-select-methods '(nnmaildir "Privat"
+							(directory "~/.mingmail")
+							(archivefolder "nnmaildir+Privat:[Gmail]/Alla mail")))
+
 
 
 (add-to-list 'gnus-secondary-select-methods '(nnmaildir "Jobb"
-                                  (directory "~/.minjobb")
-				  (archivefolder
-				   (concat "nnimap+Jobb:INBOX.Archives."
-					   (format-time-string "%Y.%Y-%m" date)))))
+							(directory "~/.minjobb")
+							(archivefolder
+							 (concat "nnmaildir+Jobb:INBOX.Arkiv."
+								 (format-time-string "%Y" date)))))
 
 
 
