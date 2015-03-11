@@ -20,6 +20,21 @@
 
 
 
+(defun run-gnus-update () 
+  (interactive)
+  (message "xy")
+  (if (buffer-live-p (get-buffer gnus-group-buffer))
+      (let ((cit (current-idle-time)))
+	(if cit
+	    (if (> (car (cdr cit)) 60)
+		(save-excursion
+		  (message "Getting new mail.")
+		  (set-buffer gnus-group-buffer)
+		  (gnus-group-get-new-news)))))))
+
+
+(run-with-timer 60 60 nil 'run-gnus-update)
+
 (setq gnus-use-bbdb t)
 
 (setq gnus-default-charset 'utf-8)
@@ -91,3 +106,5 @@
 
 
 (setq nnmail-expiry-wait 'immediate)
+
+(set-face-foreground 'gnus-group-mail-3 "#404020")
