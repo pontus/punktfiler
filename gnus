@@ -22,7 +22,6 @@
 
 (defun run-gnus-update () 
   (interactive)
-  (message "xy")
   (if (buffer-live-p (get-buffer gnus-group-buffer))
       (let ((cit (current-idle-time)))
 	(if cit
@@ -33,7 +32,7 @@
 		  (gnus-group-get-new-news)))))))
 
 
-(run-with-timer 60 60 nil 'run-gnus-update)
+(run-with-timer 60 60 'run-gnus-update)
 
 (setq gnus-use-bbdb t)
 
@@ -107,4 +106,11 @@
 
 (setq nnmail-expiry-wait 'immediate)
 
-(set-face-foreground 'gnus-group-mail-3 "#404020")
+(defface gnus-group-mail-3 '((t . (":foreground" "#404020"))) "Gnus face")
+(defface gnus-cite-1 '((t . (":foreground" "#202090"))) "Quoted text")
+(defface message-header-cc '((t . (":foreground" "#202090"))) "CC line")
+(defface message-header-to '((t . (":foreground" "#202090"))) "To line")
+;(defface gnus-cite-1 '((t . (":foreground" "#202090"))) "Gnus face")
+;(defface gnus-cite-1 '((t . (":foreground" "#202090"))) "Gnus face")
+;(set-face-foreground 'gnus-group-mail-3 "#404020")
+;(set-face-foreground 'message-header-to "#202090")
