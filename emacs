@@ -9,8 +9,8 @@
       (require 'un-define)
   ))
 
-(if (fboundp 'server-start)
-    (server-start))
+;(if (fboundp 'server-start)
+;    (server-start))
 
 (setq load-path
       (cons (concat (getenv "HOME")
