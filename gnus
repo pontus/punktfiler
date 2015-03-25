@@ -106,11 +106,19 @@
 
 (setq nnmail-expiry-wait 'immediate)
 
+(setq gnus-large-newsgroup 150000)
+
 (defface gnus-group-mail-3 '((t . (":foreground" "#404020"))) "Gnus face")
 (defface gnus-cite-1 '((t . (":foreground" "#202090"))) "Quoted text")
 (defface message-header-cc '((t . (":foreground" "#202090"))) "CC line")
 (defface message-header-to '((t . (":foreground" "#202090"))) "To line")
 ;(defface gnus-cite-1 '((t . (":foreground" "#202090"))) "Gnus face")
 ;(defface gnus-cite-1 '((t . (":foreground" "#202090"))) "Gnus face")
-;(set-face-foreground 'gnus-group-mail-3 "#404020")
-;(set-face-foreground 'message-header-to "#202090")
+
+(add-hook 'gnus-group-prepare-hook (lambda ()
+  (set-face-foreground 'gnus-group-mail-3 "#404020")
+  (set-face-foreground 'message-header-to "#202090")
+  (set-face-foreground 'message-header-cc "#202090")
+  (set-face-foreground 'gnus-header-from "#202030")
+  (set-face-foreground 'gnus-cite-1 "#202090")))
+
