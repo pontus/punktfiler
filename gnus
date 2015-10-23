@@ -3,25 +3,36 @@
 
 
 
-(setq gnus-nntp-server "news.gmane.org")
+(setq gnus-nttp-server nil)
+(setq gnus-select-method '(nndoc "gnus-help"))
 
-(add-to-list 'gnus-secondary-select-methods '(nnimap "Privat"
-                                  (nnimap-address "imap.gmail.com")
-                                  (nnimap-server-port 993)
-                                  (nnimap-stream ssl)
-				  (archivefolder (concat "nnimap+Privat:[Gmail]/Alla mail/"
-							 (format-time-string "%Y/%Y-%m" date)))))
+(add-to-list 'gnus-secondary-select-methods '(nnmaildir "Privat"
+							(directory "~/.mingmail")
+							(archivefolder "nnmaildir+Privat:[Gmail]/Alla mail")))
 
 
-(add-to-list 'gnus-secondary-select-methods '(nnimap "Jobb"
-                                  (nnimap-address "imap.uu.se")
-                                  (nnimap-server-port 143)
-                                  (nnimap-stream starttls)
-				  (archivefolder
-				   (concat "nnimap+Jobb:INBOX.Archives."
-					   (format-time-string "%Y.%Y-%m" date)))))
+
+(add-to-list 'gnus-secondary-select-methods '(nnmaildir "Jobb"
+							(directory "~/.minjobb")
+							(archivefolder
+							 (concat "nnmaildir+Jobb:INBOX.Arkiv."
+								 (format-time-string "%Y" date)))))
 
 
+
+(defun run-gnus-update () 
+  (interactive)
+  (if (buffer-live-p (get-buffer gnus-group-buffer))
+      (let ((cit (current-idle-time)))
+	(if cit
+	    (if (> (car (cdr cit)) 60)
+		(save-excursion
+		  (message "Getting new mail.")
+		  (set-buffer gnus-group-buffer)
+		  (gnus-group-get-new-news)))))))
+
+
+(run-with-timer 60 60 'run-gnus-update)
 
 (setq gnus-use-bbdb t)
 
@@ -34,7 +45,15 @@
 
 (setq message-from-style 'angles)
 
+(bbdb-initialize 'gnus 'message)
+(bbdb-insinuate-message)
+(add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
 
+(setq bbdb-complete-name-full-completion t)
+(setq bbdb-completion-type 'primary-or-name)
+(setq bbdb-complete-name-allow-cycling t)
+
+;(add-hook 'message-setup-hook 'nil)
 
 (defun enz-eudc-expand-inline()
   (interactive)
@@ -86,3 +105,20 @@
 
 
 (setq nnmail-expiry-wait 'immediate)
+
+(setq gnus-large-newsgroup 150000)
+
+(defface gnus-group-mail-3 '((t . (":foreground" "#404020"))) "Gnus face")
+(defface gnus-cite-1 '((t . (":foreground" "#202090"))) "Quoted text")
+(defface message-header-cc '((t . (":foreground" "#202090"))) "CC line")
+(defface message-header-to '((t . (":foreground" "#202090"))) "To line")
+;(defface gnus-cite-1 '((t . (":foreground" "#202090"))) "Gnus face")
+;(defface gnus-cite-1 '((t . (":foreground" "#202090"))) "Gnus face")
+
+(add-hook 'gnus-group-prepare-hook (lambda ()
+  (set-face-foreground 'gnus-group-mail-3 "#404020")
+  (set-face-foreground 'message-header-to "#202090")
+  (set-face-foreground 'message-header-cc "#202090")
+  (set-face-foreground 'gnus-header-from "#202030")
+  (set-face-foreground 'gnus-cite-1 "#202090")))
+

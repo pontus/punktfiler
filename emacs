@@ -642,18 +642,6 @@ not readable."
 
 (require 'tramp)
 
-(setq tramp-methods
-      (append tramp-methods 
-	      (list '("lshg" 
-		      (tramp-connection-function tramp-open-connection-rsh) 
-		      (tramp-login-program "lshg") 
-		      (tramp-copy-program nil) 
-		      (tramp-remote-sh "/bin/sh") 
-		      (tramp-login-args ()) 
-		      (tramp-copy-args nil) 
-		      (tramp-copy-keep-date-arg nil)
-		      (tramp-password-end-of-line nil)))))
-
 ; (setq tramp-default-method "lshg")
 
 
@@ -691,6 +679,25 @@ not readable."
 ; (if (fboundp 'clipboard-kill-region) 
 ;    (defalias 'kill-region 'clipboard-kill-region))
 
+(setq tramp-remote-process-environment '("LC_ALL=C" "TERM=dumb" "EMACS=t" "INSIDE_EMACS='24.3.1,tramp:2.2.6-24.3'" "MAIL=" "MAILCHECK=" "MAILPATH=" "PAGER=\"\"" "autocorrect=" "correct="))
+
+(setq gnus-use-cache t)
+(setq gnus-cache-directory "~/.cache/Mail")
+(setq gnus-cache-enter-articles '(ticked dormant read unread))
+(setq gnus-cache-remove-articles nil)
+(setq gnus-cacheable-groups "^nnimap")
+
+(setq send-mail-function 'smtpmail-send-it)
+(setq smtpmail-smtp-server "smtp.uu.se")
+(setq smtpmail-smtp-service 587)
 
 
+(setq gnus-posting-styles '((".*mail.uu.se.*" (address "Pontus.Freyhult@it.uu.se"))
+			    (".*Privat.*" (address "pontus@freyhult.net"))))
 
+(setq gnus-summary-line-format "%U%R%z%I%(%[%d: %4L: %-23,23f%]%) %s
+")
+
+(setq gnus-agent nil)
+
+(setq gnus-nov-is-evil t)
