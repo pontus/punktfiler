@@ -90,5 +90,8 @@ export SSH_AUTH_SOCK
 
 
 
+if [ -x /usr/local/bin/tmux ]; then
+  alias tmux=/usr/local/bin/tmux
+fi
 
 
