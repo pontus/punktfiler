@@ -2,6 +2,7 @@
 
 
 
+(setq gnus-group-default-list-level 1)
 
 (setq gnus-nttp-server nil)
 (setq gnus-select-method '(nndoc "gnus-help"))
