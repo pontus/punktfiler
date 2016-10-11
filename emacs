@@ -691,6 +691,7 @@ not readable."
 (setq smtpmail-smtp-server "smtp.uu.se")
 (setq smtpmail-smtp-service 587)
 
+(setq gnus-group-default-list-level 1)
 
 (setq gnus-posting-styles '((".*mail.uu.se.*" (address "Pontus.Freyhult@it.uu.se"))
 			    (".*Privat.*" (address "pontus@freyhult.net"))))
