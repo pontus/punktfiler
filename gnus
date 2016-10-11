@@ -7,14 +7,14 @@
 (setq gnus-nttp-server nil)
 (setq gnus-select-method '(nndoc "gnus-help"))
 
-(add-to-list 'gnus-secondary-select-methods '(nnmaildir "Privat"
-							(directory "~/.mingmail")
+(add-to-list 'gnus-secondary-select-methods '(nnmaildir "Privatpost"
+							(directory "~/.mbsync/Privat")
 							(archivefolder "nnmaildir+Privat:[Gmail]/Alla mail")))
 
 
 
-(add-to-list 'gnus-secondary-select-methods '(nnmaildir "Jobb"
-							(directory "~/.minjobb")
+(add-to-list 'gnus-secondary-select-methods '(nnmaildir "Jobbpost"
+							(directory "~/.mbsync/Jobb")
 							(archivefolder
 							 (concat "nnmaildir+Jobb:INBOX.Arkiv."
 								 (format-time-string "%Y" date)))))
