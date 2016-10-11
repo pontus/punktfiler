@@ -7,13 +7,14 @@
 (setq gnus-nttp-server nil)
 (setq gnus-select-method '(nndoc "gnus-help"))
 
-(add-to-list 'gnus-secondary-select-methods '(nnmaildir "Privatpost"
+(add-to-list 'gnus-secondary-select-methods '(nnmaildir "Privat"
 							(directory "~/.mbsync/Privat")
 							(archivefolder "nnmaildir+Privat:[Gmail]/Alla mail")))
 
 
 
-(add-to-list 'gnus-secondary-select-methods '(nnmaildir "Jobbpost"
+
+(add-to-list 'gnus-secondary-select-methods '(nnmaildir "Jobb"
 							(directory "~/.mbsync/Jobb")
 							(archivefolder
 							 (concat "nnmaildir+Jobb:INBOX.Arkiv."
@@ -36,6 +37,7 @@
 ;(run-with-timer 60 60 'run-gnus-update)
 
 (setq gnus-use-bbdb t)
+(setq gnus-use-cache nil)
 
 (setq gnus-default-charset 'utf-8)
 
@@ -127,3 +129,5 @@
   (set-face-foreground 'gnus-header-from "#202030")
   (set-face-foreground 'gnus-cite-1 "#202090")))
 
+
+(setq smime-keys '(("Pontus.Freyhult@it.uu.se" . (  (concat (getenv "HOME") "/Dropbox/Identiteter/PontusFreyhult.pem")))))
