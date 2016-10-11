@@ -49,6 +49,10 @@
 (bbdb-insinuate-message)
 (add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
 
+(add-hook 'gnus-summary-mode-hook '(define-key
+				     gnus-summary-mode-map "Z"
+				     'gnus-group-get-new-news-this-group))
+
 (setq bbdb-complete-name-full-completion t)
 (setq bbdb-completion-type 'primary-or-name)
 (setq bbdb-complete-name-allow-cycling t)
