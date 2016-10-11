@@ -32,7 +32,7 @@
 		  (gnus-group-get-new-news)))))))
 
 
-(run-with-timer 60 60 'run-gnus-update)
+;(run-with-timer 60 60 'run-gnus-update)
 
 (setq gnus-use-bbdb t)
 
