@@ -1,4 +1,4 @@
-(require 'pgg)
+(require 'epg)
 
 
 
@@ -88,7 +88,7 @@
 (setq archivefolder nil)
 ;; Automatically sign when sending mails
 (add-hook 'message-setup-hook 'mml-secure-message-sign-pgpmime)
-(setq gnus-newsgroup-variables '(pgg-default-user-id))
+;(setq gnus-newsgroup-variables '(pgg-default-user-id))
 
 
 
