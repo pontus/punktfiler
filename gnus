@@ -6,6 +6,7 @@
 
 (setq gnus-nttp-server nil)
 (setq gnus-select-method '(nndoc "gnus-help"))
+(setq gnus-show-thread nil)
 
 (add-to-list 'gnus-secondary-select-methods '(nnmaildir "Privat"
 							(directory "~/.mbsync/Privat")
