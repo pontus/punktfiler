@@ -95,3 +95,10 @@ if [ -x /usr/local/bin/tmux ]; then
 fi
 
 
+svn-log-diff()
+ {
+        for c in `svn log "$@"  | grep '^r' | cut -f1 -d ' ' | sed s/r/-c/`; do
+             svn diff --force $c || break
+        done
+ }
+
