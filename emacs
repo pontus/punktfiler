@@ -1,6 +1,9 @@
 ;  -*- mode: LISP; coding: utf-8; -*-
 
+(setq global-auto-complete-mode nil)
 
+(if (fboundp 'global-auto-complete-mode)
+    (global-auto-complete-mode nil))
 
 (if (and (boundp 'running-xemacs)
 	 running-xemacs)
