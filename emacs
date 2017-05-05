@@ -5,6 +5,8 @@
 (if (fboundp 'global-auto-complete-mode)
     (global-auto-complete-mode nil))
 
+(setq ac-modes nil)
+
 (if (and (boundp 'running-xemacs)
 	 running-xemacs)
     (progn
