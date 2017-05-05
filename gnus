@@ -1,19 +1,22 @@
-(require 'pgg)
+(require 'epg)
 
 
 
+(setq gnus-group-default-list-level 1)
 
 (setq gnus-nttp-server nil)
 (setq gnus-select-method '(nndoc "gnus-help"))
+(setq gnus-show-thread nil)
 
 (add-to-list 'gnus-secondary-select-methods '(nnmaildir "Privat"
-							(directory "~/.mingmail")
+							(directory "~/.mbsync/Privat")
 							(archivefolder "nnmaildir+Privat:[Gmail]/Alla mail")))
 
 
 
+
 (add-to-list 'gnus-secondary-select-methods '(nnmaildir "Jobb"
-							(directory "~/.minjobb")
+							(directory "~/.mbsync/Jobb")
 							(archivefolder
 							 (concat "nnmaildir+Jobb:INBOX.Arkiv."
 								 (format-time-string "%Y" date)))))
@@ -32,9 +35,10 @@
 		  (gnus-group-get-new-news)))))))
 
 
-(run-with-timer 60 60 'run-gnus-update)
+;(run-with-timer 60 60 'run-gnus-update)
 
 (setq gnus-use-bbdb t)
+(setq gnus-use-cache nil)
 
 (setq gnus-default-charset 'utf-8)
 
@@ -48,6 +52,10 @@
 (bbdb-initialize 'gnus 'message)
 (bbdb-insinuate-message)
 (add-hook 'gnus-startup-hook 'bbdb-insinuate-gnus)
+
+(add-hook 'gnus-group-mode-hook (lambda nil (define-key
+				     gnus-group-mode-map "Z"
+				     'gnus-group-get-new-news-this-group)))
 
 (setq bbdb-complete-name-full-completion t)
 (setq bbdb-completion-type 'primary-or-name)
@@ -81,7 +89,7 @@
 (setq archivefolder nil)
 ;; Automatically sign when sending mails
 (add-hook 'message-setup-hook 'mml-secure-message-sign-pgpmime)
-(setq gnus-newsgroup-variables '(pgg-default-user-id))
+;(setq gnus-newsgroup-variables '(pgg-default-user-id))
 
 
 
@@ -122,3 +130,5 @@
   (set-face-foreground 'gnus-header-from "#202030")
   (set-face-foreground 'gnus-cite-1 "#202090")))
 
+
+(setq smime-keys '(("Pontus.Freyhult@it.uu.se" . (  (concat (getenv "HOME") "/Dropbox/Identiteter/PontusFreyhult.pem")))))
