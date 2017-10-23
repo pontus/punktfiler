@@ -20,10 +20,10 @@ hname=`hostname -s`
 
 case "$TERM" in
 xterm*|rxvt*)
-    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${hname}: ${PWD/$HOME/~}\007"'
+    PROMPT_COMMAND='history -a; echo -ne "\033]0;${USER}@${hname}: ${PWD/$HOME/~}\007"'
     ;;
 screen*)
-    PROMPT_COMMAND='echo -n -e "\\033k${hname}\033\\"'	
+    PROMPT_COMMAND='history -a; echo -n -e "\\033k${hname}\033\\"'	
     ;;
 esac
 
@@ -101,4 +101,13 @@ svn-log-diff()
              svn diff --force $c || break
         done
  }
+
+
+HISTTIMEFORMAT='%F %T '
+HISTIGNORE='ls:bg:fg:history:exit'
+shopt -s histappend
+HISTFILESIZE=1000000
+HISTSIZE=1000000
+HISTCONTROL=ignoredups
+shopt -s cmdhist
 
