@@ -1,23 +1,11 @@
 ;  -*- mode: LISP; coding: utf-8; -*-
 
-;(load gnus)
+(setq global-auto-complete-mode nil)
 
-;(defun nnmaildir--group-maxnum (server group)
-;  (truncate (float-time)))
+(if (fboundp 'global-auto-complete-mode)
+    (global-auto-complete-mode nil))
 
-;(defun nnmail--new-number (nndir)
-;  (truncate (float-time)))
-
-
-;(add-hook 'gnus-group-mode-hook
-;	  (lambda () (defun nnmail--new-number (nndir)
-;	    (truncate (float-time)))
-;	  ))
-
-;(add-hook 'gnus-group-mode-hook
-;	  (lambda () (defun nnmaildir--group-maxnum (server group)
-;	    (truncate (float-time)))
-;	  ))
+(setq ac-modes nil)
 
 (if (and (boundp 'running-xemacs)
 	 running-xemacs)
