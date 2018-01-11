@@ -693,7 +693,7 @@ not readable."
 (setq gnus-cacheable-groups "^nnimap")
 
 (setq send-mail-function 'smtpmail-send-it)
-(setq smtpmail-smtp-server "smtp.uu.se")
+(setq smtpmail-smtp-server "mail.uu.se")
 (setq smtpmail-smtp-service 587)
 
 (setq gnus-group-default-list-level 1)
