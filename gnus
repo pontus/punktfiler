@@ -43,7 +43,7 @@
 (setq gnus-default-charset 'utf-8)
 
 (setq message-send-mail-function 'message-smtpmail-send-it)
-(setq smtpmail-smtp-server "smtp.uu.se")
+(setq smtpmail-smtp-server "mail.uu.se")
 (setq mm-inline-large-images t)
 
 
