@@ -213,6 +213,7 @@ mode exists."
 (add-hook 'lyskom-edit-mode-hook 'use-input-method)
 (add-hook 'lyskom-edit-mode-hook 'flyspell-mode)
 (add-hook 'message-mode-hook 'use-input-method)
+(add-hook 'message-mode-hook 'flyspell-mode)
 (add-hook 'zenirc-mode-hook 'use-input-method)
 
 
@@ -414,7 +415,7 @@ mode exists."
  ("/a" "å")
 )
 
-(setq default-input-method "swedish-prefix")
+;(setq default-input-method "swedish-prefix")
 
 ;(lyskom "kom.lysator.liu.se" "Pontus Sköld")
 ;(lyskom "sno.pp.se" "Pontus Sköld")
