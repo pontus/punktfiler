@@ -78,7 +78,7 @@ else
      else
        AGPATH="/tmp/.ssh_agent.$$.$UID"
        rm -f "$AGPATH" 
-       ssh-agent -a "$AGPATH"
+       ssh-agent -a "$AGPATH" >/dev/null
        rm -f "$MYSOCKPATH"
        ln -s "$AGPATH" "$MYSOCKPATH"
      fi 
