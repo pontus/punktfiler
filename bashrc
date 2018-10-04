@@ -89,7 +89,7 @@ SSH_AUTH_SOCK="$MYSOCKPATH"
 export SSH_AUTH_SOCK
 
 
-if [ type -t ls | grep -q alias ]; then
+if type -t ls | grep -q alias ; then
   unalias ls
 fi
 
