@@ -89,6 +89,10 @@ SSH_AUTH_SOCK="$MYSOCKPATH"
 export SSH_AUTH_SOCK
 
 
+if type -t ls | grep -q alias ; then
+  unalias ls
+fi
+
 
 if [ -x /usr/local/bin/tmux ]; then
   alias tmux=/usr/local/bin/tmux
