@@ -23,7 +23,7 @@ xterm*|rxvt*)
     PROMPT_COMMAND='history -a; history -n; echo -ne "\033]0;${USER}@${hname}: ${PWD/$HOME/~}\007"'
     ;;
 screen*)
-    PROMPT_COMMAND='history -anr; history -n; echo -n -e "\\033k${hname}\033\\"'	
+    PROMPT_COMMAND='history -a; history -n; echo -n -e "\\033k${hname}\033\\"'	
     ;;
 esac
 
@@ -102,6 +102,9 @@ svn-log-diff()
         done
  }
 
+if type -t ls | grep -q alias ; then
+  unalias ls
+fi
 
 HISTTIMEFORMAT='%F %T '
 HISTIGNORE='ls:bg:fg:history:exit'
@@ -110,4 +113,8 @@ HISTFILESIZE=1000000
 HISTSIZE=1000000
 HISTCONTROL=ignoredups
 shopt -s cmdhist
+
+if [ -f ~/.bashrc_local ]; then
+. ~/.bashrc_local
+fi
 
