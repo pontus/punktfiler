@@ -712,7 +712,7 @@ not readable."
 
 (when (>= emacs-major-version 24)
   (require 'package)
-  (setq package-list '(names auto-package-update aggressive-indent web-mode))
+  (setq package-list '(names  aggressive-indent web-mode))
   (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
   (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
   (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/") t)
@@ -722,21 +722,13 @@ not readable."
   (dolist (package package-list)
     (unless (package-installed-p package)
       (package-install package)))
-  (auto-package-update-at-time "10:00")
-  (auto-package-update-maybe)
-  ;; (övrig kod för initialisering av modes, mac-tangenter etc)
-  )
 
-
-
-
-
-
-
-
-
-
-
+  (if (and (= emacs-major-version 24) 
+	   (>= emacs-minor-version 4))
+      (progn
+	(auto-package-update-at-time "10:00")
+	(auto-package-update-maybe))))
+ 
 
 (setq google-contacts-user "pontus@freyhult.net")
 (setq google-conctacts-directory "/home/pontusf/Utveckling/bbdb-google/code/")
