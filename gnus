@@ -8,18 +8,19 @@
 (setq gnus-select-method '(nndoc "gnus-help"))
 (setq gnus-show-thread nil)
 
-(add-to-list 'gnus-secondary-select-methods '(nnmaildir "Privat"
-							(directory "~/.mbsync/Privat")
-							(archivefolder "nnmaildir+Privat:[Gmail]/Alla mail")))
+(if (file-directory-p "~/.mbsync/Privat")
+    (add-to-list 'gnus-secondary-select-methods '(nnmaildir "Privat"
+							    (directory "~/.mbsync/Privat")
+							    (archivefolder "nnmaildir+Privat:[Gmail]/Alla mail"))))
 
 
 
-
-(add-to-list 'gnus-secondary-select-methods '(nnmaildir "Jobb"
-							(directory "~/.mbsync/Jobb")
-							(archivefolder
-							 (concat "nnmaildir+Jobb:INBOX.Arkiv."
-								 (format-time-string "%Y" date)))))
+(if (file-directory-p "~/.mbsync/Jobb")
+    (add-to-list 'gnus-secondary-select-methods '(nnmaildir "Jobb"
+							    (directory "~/.mbsync/Jobb")
+							    (archivefolder
+							     (concat "nnmaildir+Jobb:INBOX.Arkiv."
+								     (format-time-string "%Y" date))))))
 
 
 
