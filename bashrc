@@ -106,6 +106,12 @@ svn-log-diff()
         done
  }
 
+for p in ~/.gem ~/.gem/ruby/* ~/.local; do
+  if [ -d "$p/bin" ]; then
+    PATH=$PATH:$p/bin
+  fi
+done
+
 if type -t ls | grep -q alias ; then
   unalias ls
 fi
