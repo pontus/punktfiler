@@ -715,7 +715,6 @@ not readable."
   (setq package-list '(names  aggressive-indent web-mode))
   (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
   (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
-  (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/") t)
 
   (package-initialize)
   (or (file-exists-p package-user-dir) (package-refresh-contents))
