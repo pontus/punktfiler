@@ -122,6 +122,9 @@ HISTSIZE=1000000
 HISTCONTROL=ignoredups
 shopt -s cmdhist
 
+
+DOCKER_COMPLETION_SHOW_CONTAINER_IDS=yes
+
 if [ -f ~/.bashrc_local ]; then
 . ~/.bashrc_local
 fi
