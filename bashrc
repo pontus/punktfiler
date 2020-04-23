@@ -20,10 +20,10 @@ hname=`hostname -s`
 
 case "$TERM" in
 xterm*|rxvt*)
-    PROMPT_COMMAND='history -a; history -n; echo -ne "\033]0;${USER}@${hname}: ${PWD/$HOME/~}\007"'
+    PROMPT_COMMAND='history -a; history -n; history -r; echo -ne "\033]0;${USER}@${hname}: ${PWD/$HOME/~}\007"'
     ;;
 screen*)
-    PROMPT_COMMAND='history -a; history -n; echo -n -e "\\033k${hname}\033\\"'	
+    PROMPT_COMMAND='history -a; history -n; history -r;  echo -n -e "\\033k${hname}\033\\"'	
     ;;
 esac
 
@@ -115,13 +115,21 @@ if type -t ls | grep -q alias ; then
 fi
 
 HISTTIMEFORMAT='%F %T '
-HISTIGNORE='ls:bg:fg:history:exit'
+HISTIGNORE='bg:fg:history:exit'
 shopt -s histappend
 HISTFILESIZE=1000000
 HISTSIZE=1000000
-HISTCONTROL=ignoredups
+HISTCONTROL=
 shopt -s cmdhist
 
+logsbeforenext () {
+  history -a
+  history -n
+  history -r
+}
+
+trap logsbeforenext EXIT
+trap logsbeforenext DEBUG
 
 DOCKER_COMPLETION_SHOW_CONTAINER_IDS=yes
 
