@@ -20,10 +20,10 @@ hname=`hostname -s`
 
 case "$TERM" in
 xterm*|rxvt*)
-    PROMPT_COMMAND='history -a; history -n; history -r; echo -ne "\033]0;${USER}@${hname}: ${PWD/$HOME/~}\007"'
+    PROMPT_COMMAND='history -a; history -n; echo -ne "\033]0;${USER}@${hname}: ${PWD/$HOME/~}\007"'
     ;;
 screen*)
-    PROMPT_COMMAND='history -a; history -n; history -r;  echo -n -e "\\033k${hname}\033\\"'	
+    PROMPT_COMMAND='history -a; history -n; echo -n -e "\\033k${hname}\033\\"'	
     ;;
 esac
 
@@ -125,7 +125,6 @@ shopt -s cmdhist
 logsbeforenext () {
   history -a
   history -n
-  history -r
 }
 
 trap logsbeforenext EXIT
