@@ -14,7 +14,11 @@
       (require 'un-define)
   ))
 
-(if (fboundp 'server-start)
+(require 'server "server" t)
+
+(if (and (fboundp 'server-running-p)
+	 (not (server-running-p))
+	 (fboundp 'server-start))
     (server-start))
 
 (setq load-path
