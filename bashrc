@@ -20,10 +20,10 @@ hname=`hostname -s`
 
 case "$TERM" in
 xterm*|rxvt*)
-    PROMPT_COMMAND='history -a; history -n; echo -ne "\033]0;${USER}@${hname}: ${PWD/$HOME/~}\007"'
+    PROMPT_COMMAND='logsbeforenext; echo -ne "\033]0;${USER}@${hname}: ${PWD/$HOME/~}\007"'
     ;;
 screen*)
-    PROMPT_COMMAND='history -a; history -n; echo -n -e "\\033k${hname}\033\\"'	
+    PROMPT_COMMAND='logsbeforenext; echo -n -e "\\033k${hname}\033\\"'	
     ;;
 esac
 
@@ -124,15 +124,29 @@ shopt -s cmdhist
 
 logsbeforenext () {
   history -a
-  history -n
+  nowhistory=$(printf '%(%s)T')
+  find ~/.bash_history.d/ -mmin "-$(((nowhistory-lasthistory)/60+2))" |  while read -r p; do
+    history -n "$p"
+  done
+  lasthistory=$nowhistory
 }
 
 trap logsbeforenext EXIT
 trap logsbeforenext DEBUG
+lasthistory=$(printf '%(%s)T')
+now=$(printf '%(%Y%m%d-%H%M%S)T')
+HISTFILE="$HOME/.bash_history.d/$now-$hname-$$"
 
 DOCKER_COMPLETION_SHOW_CONTAINER_IDS=yes
+
+for p in ~/.bash_history ~/.bash_history.d/*; do
+    history -n "$p"
+done
 
 if [ -f ~/.bashrc_local ]; then
 . ~/.bashrc_local
 fi
 
+for tool in kubectl; do
+  eval "$($tool completion bash)"
+done
