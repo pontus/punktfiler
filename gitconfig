@@ -16,7 +16,11 @@
 	forbinda = commit
 	ympa = rebase
 	sammanfoga = merge
+        sammanflata = merge
 	gom = stash
 	klandra = blame
 	marke = tag
 	mark = tag
+        skillnad = diff
+        addera = add
+        laggtill = add
