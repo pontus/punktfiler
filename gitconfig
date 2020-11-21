@@ -1,0 +1,22 @@
+[user]
+	name = Pontus Freyhult
+	email = pontus_github@soua.net
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[core]
+	config = emacs
+[alias]
+	ryck = pull
+	knuffa = push
+	gren = branch
+	forgrena = branch
+	forbinda = commit
+	ympa = rebase
+	sammanfoga = merge
+	gom = stash
+	klandra = blame
+	marke = tag
+	mark = tag
