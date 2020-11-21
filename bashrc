@@ -110,10 +110,6 @@ for p in ~/.gem ~/.gem/ruby/* ~/.local; do
   fi
 done
 
-if type -t ls | grep -q alias ; then
-  unalias ls
-fi
-
 HISTTIMEFORMAT='%F %T '
 HISTIGNORE='bg:fg:history:exit'
 shopt -s histappend
