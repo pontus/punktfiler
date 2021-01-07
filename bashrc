@@ -119,26 +119,34 @@ HISTSIZE=1000000
 HISTCONTROL=
 shopt -s cmdhist
 
+for p in ~/.bash_history ~/.bash_history.d/*; do
+    history -r "$p"
+done
+
+lasthistory=$(printf '%(%s)T')
+
 logsbeforenext () {
   history -a
   nowhistory=$(printf '%(%s)T')
-  find ~/.bash_history.d/ -mmin "-$(((nowhistory-lasthistory)/60+2))" |  while read -r p; do
-    history -n "$p"
+  find ~/.bash_history.d/ -type f -mmin "-$(((nowhistory-lasthistory)/60+2))" |  while read -r p; do
+    tac "$p" | while read cmd; do
+      read tim
+      if [ -z "$lasthistory" ] ||  [ "${tim:1}" -lt "$lasthistory" ]; then
+        break
+      fi
+      history -s "$cmd"
+    done
   done
   lasthistory=$nowhistory
 }
 
 trap logsbeforenext EXIT
 trap logsbeforenext DEBUG
-lasthistory=$(printf '%(%s)T')
 now=$(printf '%(%Y%m%d-%H%M%S)T')
 HISTFILE="$HOME/.bash_history.d/$now-$hname-$$"
 
 DOCKER_COMPLETION_SHOW_CONTAINER_IDS=yes
 
-for p in ~/.bash_history ~/.bash_history.d/*; do
-    history -n "$p"
-done
 
 if [ -f ~/.bashrc_local ]; then
 . ~/.bashrc_local
