@@ -145,5 +145,7 @@ if [ -f ~/.bashrc_local ]; then
 fi
 
 for tool in kubectl; do
-  eval "$($tool completion bash)"
+  if type -p "$tool" > /dev/null; then
+    eval "$($tool completion bash)"
+  fi
 done
