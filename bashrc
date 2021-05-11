@@ -129,8 +129,13 @@ logsbeforenext () {
   history -a
   nowhistory=$(printf '%(%s)T')
   find ~/.bash_history.d/ -type f -mmin "-$(((nowhistory-lasthistory)/60+2))" |  while read -r p; do
-    tac "$p" | while read cmd; do
-      read tim
+    tac "$p" | while read -r cmd; do
+      while read -r tim; do
+        if echo "$tim" | grep -q '^#[0-9][0-9]*$'; then
+          break
+        fi
+        cmd=$(printf "%s\n%s" "$tim" "$cmd")
+      done
       if [ -z "$lasthistory" ] ||  [ "${tim:1}" -lt "$lasthistory" ]; then
         break
       fi
