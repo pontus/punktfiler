@@ -21,10 +21,10 @@ hname=`hostname -s`
 
 case "$TERM" in
 xterm*|rxvt*)
-    PROMPT_COMMAND='logsbeforenext; echo -ne "\033]0;${USER}@${hname}: ${PWD/$HOME/~}\007"'
+    PROMPT_COMMAND='logsbeforenext; echo -ne "\033]0;${USER}@${hname}: ${PWD/#$HOME/\~}\007"'
     ;;
 screen*)
-    PROMPT_COMMAND='logsbeforenext; echo -n -e "\\033k${hname}\033\\"'	
+    PROMPT_COMMAND='logsbeforenext; echo -n -e "\\033k${hname}:${PWD/#$HOME/\~}\033\\"'
     ;;
 esac
 
