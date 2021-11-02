@@ -113,6 +113,13 @@ for p in ~/.gem ~/.gem/ruby/* ~/.local; do
   fi
 done
 
+
+# Use bat if available
+if type -p batcat >/dev/null ; then
+  export BAT_THEME=GitHub
+  alias less=batcat
+fi
+
 HISTTIMEFORMAT='%F %T '
 HISTIGNORE='bg:fg:history:exit'
 shopt -s histappend
