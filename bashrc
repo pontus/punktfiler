@@ -21,11 +21,11 @@ hname=`hostname -s`
 
 case "$TERM" in
 xterm*|rxvt*)
-    PROMPT_COMMAND='logsbeforenext; echo -ne "\033]0;${USER}@${hname}: ${PWD/#$HOME/\~}\007"'
+    PROMPT_COMMAND='type logsbeforenext >/dev/null 2>/dev/null && logsbeforenext; echo -ne "\033]0;${USER}@${hname}: ${PWD/#$HOME/\~}\007"'
     function ssh { echo -n -e "\\033]0;$@\007"; /usr/bin/ssh "$@"; }
     ;;
 screen*)
-    PROMPT_COMMAND='logsbeforenext; echo -n -e "\\033k${hname}:${PWD/#$HOME/\~}\033\\"'
+    PROMPT_COMMAND='type logsbeforenext >/dev/null 2>/dev/null && logsbeforenext; echo -n -e "\\033k${hname}:${PWD/#$HOME/\~}\033\\"'
     function ssh { echo -n -e "\\033k$@\033\\"; /usr/bin/ssh "$@"; }
     ;;
 esac
