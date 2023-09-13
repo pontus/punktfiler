@@ -13,9 +13,11 @@ alias julia='julia --color=no'
 alias jävel=git
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
+for p in "$HOME" "$HOME/go"; do
+  if [ -d "$p/bin" ] ; then
+    PATH="$p/bin:$PATH"
+  fi
+done
 
 hname=`hostname -s`
 
@@ -24,7 +26,7 @@ xterm*|rxvt*)
     PROMPT_COMMAND='type logsbeforenext >/dev/null 2>/dev/null && logsbeforenext; echo -ne "\033]0;${USER}@${hname}: ${PWD/#$HOME/\~}\007"'
     function ssh { echo -n -e "\\033]0;$@\007"; /usr/bin/ssh "$@"; }
     ;;
-screen*)
+screen*|tmux*)
     PROMPT_COMMAND='type logsbeforenext >/dev/null 2>/dev/null && logsbeforenext; echo -n -e "\\033k${hname}:${PWD/#$HOME/\~}\033\\"'
     function ssh { echo -n -e "\\033k$@\033\\"; /usr/bin/ssh "$@"; }
     ;;
@@ -171,3 +173,7 @@ for tool in kubectl; do
     eval "$($tool completion bash)"
   fi
 done
+
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+
+( while  true ; do sleep 10; logsbeforenext ; done &)
