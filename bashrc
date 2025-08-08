@@ -176,4 +176,8 @@ done
 
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
-( while  true ; do sleep 10; logsbeforenext ; done &)
+if [[ $- == *i* ]]; then
+  ( while  true ; do sleep 10; logsbeforenext ; done &)
+fi
+
+TMOUT=4800
