@@ -62,21 +62,21 @@ fi
 # SSH-agent fix. Note possible security issues
 MYSOCKPATH="/tmp/.agent.$USER.$UID"
 
-if SSH_AUTH_SOCK="$MYSOCKPATH" ssh-add -L 2>/dev/null >/dev/null || \
-   LANG=C SSH_AUTH_SOCK="$MYSOCKPATH" ssh-add -L 2>&1 | grep -F -q \
+if SSH_AUTH_SOCK="$MYSOCKPATH" timeout timeout 1 ssh-add -L 2>/dev/null >/dev/null || \
+   LANG=C SSH_AUTH_SOCK="$MYSOCKPATH" timeout 1 ssh-add -L 2>&1 | grep -F -q \
    'The agent has no identities.'; then
   # Our link works fine
   :
 else
   # Link doesn't work, check if we've got an agent (SSH_AUTH_SOCK).
 
-  if ssh-add -L 2>/dev/null >/dev/null; then
+  if timeout 1 ssh-add -L 2>/dev/null >/dev/null; then
     # We've got a working agent.
       rm -f "$MYSOCKPATH"
       ln -s "$SSH_AUTH_SOCK" "$MYSOCKPATH"
   else 
      # Agent broken? 
-     if ssh-add -L 2>/dev/null | fgrep -q 'agent has no identities'; then 
+     if timeout 1 ssh-add -L 2>/dev/null | fgrep -q 'agent has no identities'; then
        : # All is well
      else
        AGPATH="/tmp/.ssh_agent.$$.$UID"
