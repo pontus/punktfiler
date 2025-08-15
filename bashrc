@@ -62,7 +62,7 @@ fi
 # SSH-agent fix. Note possible security issues
 MYSOCKPATH="/tmp/.agent.$USER.$UID"
 
-if SSH_AUTH_SOCK="$MYSOCKPATH" timeout timeout 1 ssh-add -L 2>/dev/null >/dev/null || \
+if SSH_AUTH_SOCK="$MYSOCKPATH" timeout 1 ssh-add -L 2>/dev/null >/dev/null || \
    LANG=C SSH_AUTH_SOCK="$MYSOCKPATH" timeout 1 ssh-add -L 2>&1 | grep -F -q \
    'The agent has no identities.'; then
   # Our link works fine
